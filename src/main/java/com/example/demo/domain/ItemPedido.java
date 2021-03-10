@@ -3,9 +3,12 @@ package com.example.demo.domain;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ItemPedido {
-
+	
+	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
 	
@@ -25,11 +28,12 @@ public class ItemPedido {
 	this.quantidade = quantidade;
 	this.preco = preco;
 	}
-
+	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 		
 	}
+	@JsonIgnore
 	public Produto getProduto() {
 		return id.getProduto();
 	}
