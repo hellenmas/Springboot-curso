@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
@@ -12,7 +11,6 @@ import javax.persistence.OneToOne;
 import com.example.demo.domain.enums.EstadoPagamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
-@Inheritance//(strategy = InheritanceType.JOINED)
 public abstract class Pagamento implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -34,7 +32,7 @@ public abstract class Pagamento implements Serializable {
 	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estado = estado.getCod();
+		this.estado = (estado==null) ? null : estado.getCod();
 		this.pedido = pedido;
 	}
 
